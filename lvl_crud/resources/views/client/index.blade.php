@@ -8,7 +8,7 @@
         <h1>
             Listado de Clientes!
         </h1>
-        <a href="{{ route('client.index') }}" class="btn btn-primary">Crear Clientes</a>
+        <a href="{{ route('client.create') }}" class="btn btn-primary">Crear Clientes</a>
 
        <table class="table">
             <thead>
