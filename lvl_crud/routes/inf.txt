@@ -1,0 +1,39 @@
+para que las rutas funcionen agregar al documento
+000-default.conf
+
+las siguientes lineas
+<Directory /var/www/html/>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+
+Las líneas dentro del bloque <Directory> en la configuración del virtual host de 
+Apache especifican cómo se debe configurar el acceso al directorio indicado. 
+Aquí está el significado de cada línea:
+
+1.-<Directory /var/www/html/>: Indica el directorio al que se aplicarán las configuraciones 
+siguientes. En este caso, /var/www/html/ es el directorio principal de tu servidor web.
+
+2.-Options Indexes FollowSymLinks:
+    Indexes: Permite que Apache genere automáticamente una lista de archivos 
+    cuando no se proporciona un archivo específico en la URL (por ejemplo, si accedes a un 
+    directorio y no hay un archivo index.html).
+    FollowSymLinks: Permite que Apache siga los enlaces simbólicos.
+
+3.-AllowOverride All: Esto permite que se utilicen configuraciones específicas de un archivo 
+    .htaccess dentro del directorio. Laravel utiliza un archivo .htaccess para gestionar 
+    las reglas de reescritura necesarias para el enrutamiento.
+
+4.-Require all granted: Indica que se permite el acceso sin restricciones al directorio y 
+    sus subdirectorios. En versiones anteriores de Apache, esta línea solía ser Order allow,
+    deny seguido de Allow from all, pero en Apache 2.4 y versiones posteriores, se usa 
+    Require all granted para permitir el acceso total.
+
+En el contexto de una aplicación Laravel, estas configuraciones son importantes para que Laravel pueda funcionar correctamente:
+
+Indexes puede ser útil para permitir que Laravel genere listas de archivos si estás accediendo a un directorio sin un archivo específico en la URL.
+FollowSymLinks es importante para permitir que Laravel utilice enlaces simbólicos si es necesario.
+AllowOverride All es crucial para permitir que Laravel utilice un archivo .htaccess para configurar las reglas de reescritura necesarias para su sistema de enrutamiento.
+Asegurarte de que estas configuraciones estén presentes y configuradas correctamente es esencial para que Laravel funcione correctamente con Apache.
