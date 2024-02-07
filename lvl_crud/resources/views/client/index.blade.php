@@ -23,13 +23,24 @@
                 <th>Acciones</th>
             </thead> 
             <tbody>
-                <tr>
-                    <td>FelinoHost</td>
-                    <td>0.0</td>
-                    <td>editar - eliminar </td>
-                </tr>
+
+                @forelse ($listado_clientes as $client)
+                    <tr>
+                        <td>{{$client->name}}</td>
+                        <td>{{$client->due}}</td>
+                        <td>editar - eliminar </td>
+                    </tr>
+                @empty
+                    <td colspan="3">no hay registros!<td>
+                @endforelse
+              
             </tbody>
        </table>
+       
+       @if ($listado_clientes->count)
+           {{$listado_clientes->links()}}
+       @endif
+       
     </div>
     
 @endsection

@@ -13,7 +13,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client.index');
+        $clientes_row=Client::paginate(5);
+        return view('client.index')->with('listado_clientes',$clientes_row);
     }
 
     /**
@@ -33,7 +34,7 @@ class ClientController extends Controller
         //definir algunas reglas de validacion para el formulario
         $request->validate([
             'name' => 'required|max:15',
-            'due'=>'required|gte:50',
+            'due'=>'required|gte:1',
 
         ]);
 
