@@ -95,5 +95,11 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+        $client->delete();
+        
+        //usando variables de session
+        Session::flash('mensaje','Registro Eliminado con exito!');
+
+        return redirect()->route('client.index');
     }
 }

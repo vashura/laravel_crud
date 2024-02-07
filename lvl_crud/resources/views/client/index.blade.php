@@ -31,7 +31,13 @@
                         <td>
                             <a href="{{route('client.edit', $client)}}" class="btn btn-warning">
                                 editar
-                            </a> - eliminar </td>
+                            </a> - 
+                            <form method="POST" action="{{route('client.destroy', $client)}}" class="d-inline">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Esta seguro de eliminar este registro?')">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <td colspan="3">no hay registros!<td>
