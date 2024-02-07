@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ClientController extends Controller
 {
@@ -39,6 +39,9 @@ class ClientController extends Controller
 
         // del request se especifican que parametros se van a utilizar con la funcion only
         $client = Client::create($request->only('name','due','comments'));
+
+        //usando variables de session
+        Session::flash('mensaje','registro creado con exito!');
 
         return redirect()->route('client.index');
     }

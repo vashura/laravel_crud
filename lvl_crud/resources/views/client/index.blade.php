@@ -10,6 +10,12 @@
         </h1>
         <a href="{{ route('client.create') }}" class="btn btn-primary">Crear Clientes</a>
 
+        @if (Session::has('mensaje'))
+            <div class="alert alert-info my-5">
+                {{Session::get('mensaje')}}
+            </div>
+        @endif
+
        <table class="table">
             <thead>
                 <th>Nombre</th>
