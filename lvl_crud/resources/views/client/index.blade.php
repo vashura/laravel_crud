@@ -28,7 +28,10 @@
                     <tr>
                         <td>{{$client->name}}</td>
                         <td>{{$client->due}}</td>
-                        <td>editar - eliminar </td>
+                        <td>
+                            <a href="{{route('client.edit', $client)}}" class="btn btn-warning">
+                                editar
+                            </a> - eliminar </td>
                     </tr>
                 @empty
                     <td colspan="3">no hay registros!<td>
@@ -37,7 +40,7 @@
             </tbody>
        </table>
        
-       @if ($listado_clientes->count)
+       @if ($listado_clientes->count())
            {{$listado_clientes->links()}}
        @endif
        

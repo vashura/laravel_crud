@@ -39,6 +39,7 @@ class ClientController extends Controller
         ]);
 
         // del request se especifican que parametros se van a utilizar con la funcion only
+        //hace el insert de forma masiva
         $client = Client::create($request->only('name','due','comments'));
 
         //usando variables de session
@@ -61,6 +62,7 @@ class ClientController extends Controller
     public function edit(Client $client)
     {
         //
+        return view('client.form')->with('cliente',$client);
     }
 
     /**
@@ -69,6 +71,22 @@ class ClientController extends Controller
     public function update(Request $request, Client $client)
     {
         //
+        $request->validate([
+            'name' => 'required|max:100',
+            'due'=>'required|gte:1',
+
+        ]);
+
+        // hace el update de forma indivudual
+        $client->name=$request['name'];
+        $client->due=$request['due'];
+        $client->comments=$request['comments'];
+        $client->save();
+        
+        //usando variables de session
+        Session::flash('mensaje','Registro Editado con exito!');
+
+        return redirect()->route('client.index');
     }
 
     /**
